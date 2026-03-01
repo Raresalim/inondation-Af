@@ -166,9 +166,7 @@ legend.onAdd = function () {
     var grades = [0.000976, 4.273702, 8.546274, 12.819528];
     var colors = ['#e6f0fa', '#87cefa', '#4682b4', '#000080'];
 
-    // ===== تم التعديل هنا =====
-    div.innerHTML = '<b>Profondeur d’inondation (m)</b><br>';
-
+    div.innerHTML = '<b>Flood depth (m)</b><br>';
     for (var i = 0; i < grades.length; i++) {
         div.innerHTML +=
             '<i style="background:' + colors[i] + '"></i> ' +
