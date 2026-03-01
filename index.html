@@ -58,7 +58,7 @@
 var legend = L.control({position: 'bottomright'});
         legend.onAdd = function (map) {
             var div = L.DomUtil.create('div', 'info legend');
-            div.innerHTML += '<h4>Classification des Inondations</h4>';
+            div.innerHTML += '<h4>Profondeur d’inondation (m)</h4>';
             div.innerHTML += '<i style="background: #d0e9ff"></i> 0 - 0.9<br>';
             div.innerHTML += '<i style="background: #a3d4ff"></i> 0.9 - 1.9<br>';
             div.innerHTML += '<i style="background: #76bfff"></i> 1.9 - 2.8<br>';
@@ -240,3 +240,4 @@ attribution: '',
         </script>
     </body>
 </html>
+
