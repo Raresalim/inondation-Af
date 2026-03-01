@@ -1,47 +1,47 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
 
-    <link rel="stylesheet" href="css/leaflet.css">
-    <link rel="stylesheet" href="css/L.Control.Layers.Tree.css">
-    <link rel="stylesheet" href="css/L.Control.Locate.min.css">
-    <link rel="stylesheet" href="css/qgis2web.css">
-    <link rel="stylesheet" href="css/fontawesome-all.min.css">
-    <link rel="stylesheet" href="css/leaflet.photon.css">
+<link rel="stylesheet" href="css/leaflet.css">
+<link rel="stylesheet" href="css/L.Control.Layers.Tree.css">
+<link rel="stylesheet" href="css/L.Control.Locate.min.css">
+<link rel="stylesheet" href="css/qgis2web.css">
+<link rel="stylesheet" href="css/fontawesome-all.min.css">
+<link rel="stylesheet" href="css/leaflet.photon.css">
 
-    <style>
-        html, body, #map {
-            width: 100%;
-            height: 100%;
-            padding: 0;
-            margin: 0;
-        }
+<style>
+html, body, #map {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
 
-        /* ===== Legend style ===== */
-        .legend {
-            line-height: 18px;
-            color: #555;
-            background-color: #fff;
-            border: 1px solid #ccc;
-            padding: 6px 8px;
-            box-shadow: 0 0 15px rgba(0,0,0,0.2);
-            border-radius: 5px;
-            font-size: 12px;
-        }
-        .legend i {
-            width: 18px;
-            height: 18px;
-            float: left;
-            margin-right: 8px;
-            opacity: 0.7;
-        }
-    </style>
-    <title></title>
+/* ===== Legend style ===== */
+.legend {
+    line-height: 14px;
+    color: #555;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 4px 6px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.2);
+    border-radius: 5px;
+    font-size: 10px;
+}
+.legend i {
+    width: 12px;
+    height: 12px;
+    float: left;
+    margin-right: 5px;
+    opacity: 0.7;
+}
+</style>
+<title></title>
 </head>
 
 <body>
@@ -59,21 +59,15 @@
 <script src="js/labelgun.min.js"></script>
 <script src="js/labels.js"></script>
 <script src="js/leaflet.photon.js"></script>
-<script src="data/valles_2.js"></script>
+<script src="data/valle_2.js"></script>
 
 <script>
-var map = L.map('map', {
-    zoomControl:false,
-    maxZoom:28,
-    minZoom:1
-}).fitBounds([
-    [32.43109627748314,3.6314768400864588],
-    [32.52302859879061,3.84306408019752]
-]);
+var map = L.map('map', {zoomControl:false, maxZoom:28, minZoom:1})
+    .fitBounds([[34.07070695798943,2.0247091842979508],[34.1295572927578,2.1502987500850277]]);
 
 var hash = new L.Hash(map);
 
-/* ===== حذف Attribution بالكامل ===== */
+/* ===== إزالة Attribution ===== */
 map.attributionControl.setPrefix('');
 map.attributionControl.remove();
 
@@ -84,7 +78,6 @@ L.control.locate({locateOptions: {maxZoom: 19}}).addTo(map);
 /* ===== Google Terrain ===== */
 map.createPane('pane_GoogleTerrain_0');
 map.getPane('pane_GoogleTerrain_0').style.zIndex = 400;
-
 var layer_GoogleTerrain_0 = L.tileLayer(
     'https://mt1.google.com/vt/lyrs=p&x={x}&y={y}&z={z}', {
     pane: 'pane_GoogleTerrain_0',
@@ -98,7 +91,6 @@ map.addLayer(layer_GoogleTerrain_0);
 /* ===== Google Satellite ===== */
 map.createPane('pane_GoogleSatellite_1');
 map.getPane('pane_GoogleSatellite_1').style.zIndex = 401;
-
 var layer_GoogleSatellite_1 = L.tileLayer(
     'https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
     pane: 'pane_GoogleSatellite_1',
@@ -109,39 +101,35 @@ var layer_GoogleSatellite_1 = L.tileLayer(
 });
 map.addLayer(layer_GoogleSatellite_1);
 
-/* ===== Valleys layer ===== */
-function style_valles_2_0() {
+/* ===== Valleys Layer ===== */
+map.createPane('pane_valle_2');
+map.getPane('pane_valle_2').style.zIndex = 402;
+
+function style_valle_2_0() {
     return {
-        pane: 'pane_valles_2',
+        pane: 'pane_valle_2',
         opacity: 1,
-        color: 'rgba(24,167,237,1.0)',
+        color: 'rgba(40,147,255,1.0)',
         weight: 2,
         fillOpacity: 0,
         interactive: true
     };
 }
 
-map.createPane('pane_valles_2');
-map.getPane('pane_valles_2').style.zIndex = 402;
-
-var layer_valles_2 = new L.geoJson(json_valles_2, {
-    pane: 'pane_valles_2',
-    style: style_valles_2_0,
+var layer_valle_2 = new L.geoJson(json_valle_2, {
+    pane: 'pane_valle_2',
+    style: style_valle_2_0,
     interactive: true
 });
-map.addLayer(layer_valles_2);
+map.addLayer(layer_valle_2);
 
 /* ===== Flood raster ===== */
 map.createPane('pane_inondation_3');
 map.getPane('pane_inondation_3').style.zIndex = 403;
-
 var img_inondation_3 = 'data/inondation_3.png';
-var img_bounds_inondation_3 = [
-    [32.37165228901085,3.009257966550672],
-    [32.807760862073884,3.8873520774093526]
-];
+var img_bounds_inondation_3 = [[34.003877796038815,1.9582657201163127],[34.18228355286628,2.1954789811276023]];
 
-var layer_inondation_3 = new L.imageOverlay(
+var layer_inondation_3 = L.imageOverlay(
     img_inondation_3,
     img_bounds_inondation_3,
     {pane: 'pane_inondation_3'}
@@ -151,32 +139,36 @@ map.addLayer(layer_inondation_3);
 /* ===== Layers control ===== */
 var overlaysTree = [
     {label: "Inondation", layer: layer_inondation_3},
-    {label: '<img src="legend/valles_2.png" /> Vallées', layer: layer_valles_2},
+    {label: '<img src="legend/valle_2.png" /> Vallée', layer: layer_valle_2},
     {label: "Google Satellite", layer: layer_GoogleSatellite_1},
     {label: "Google Terrain", layer: layer_GoogleTerrain_0}
 ];
-
 L.control.layers.tree(null, overlaysTree, {collapsed: true}).addTo(map);
 
-/* ===== Legend : Flood depth ===== */
+/* ===== Legend (صغير) ===== */
 var legend = L.control({ position: 'bottomright' });
 
 legend.onAdd = function () {
     var div = L.DomUtil.create('div', 'legend');
-    var grades = [0.000976, 4.273702, 8.546274, 12.819528];
+    div.style.fontSize = "9px";  // تصغير حجم الخط
+    div.style.padding = "3px 5px";
+    div.style.lineHeight = "12px";
+    div.style.maxWidth = "120px";
+
+    div.innerHTML = '<b style="font-size:10px;">Profondeur d’inondation (m)</b><br>';
+
+    var grades = [0, 1.9, 2.8, 3.8];
     var colors = ['#e6f0fa', '#87cefa', '#4682b4', '#000080'];
 
-    div.innerHTML = '<b>Flood depth (m)</b><br>';
     for (var i = 0; i < grades.length; i++) {
         div.innerHTML +=
-            '<i style="background:' + colors[i] + '"></i> ' +
-            grades[i].toFixed(1) +
-            (grades[i + 1] ? ' – ' + grades[i + 1].toFixed(1) + '<br>' : '+');
+            '<i style="background:' + colors[i] + ';"></i> ' +
+            grades[i] + (grades[i + 1] ? ' – ' + grades[i + 1] + '<br>' : '+');
     }
     return div;
 };
-
 legend.addTo(map);
+
 </script>
 </body>
 </html>
